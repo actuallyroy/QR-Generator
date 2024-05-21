@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Unsharp Mask in JavaScript with CSS Filters</title>
+<script src="qrCode.js"></script>
+<script>
+  window.onload = function() {
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    var image = new Image();
+    const square = "data:image/webp;base64,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"
+    var image1 = new Image()
+    image1.src = square
+    const logoSrc = "data:image/webp;base64,UklGRpQFAABXRUJQVlA4WAoAAAAAAAAAZAAAYwAAVlA4ICAFAADQGQCdASplAGQAAAAAJaQAV4B/APor8Sv49+Mn6k9gN1c9Iv1l/vmmB/BPov8m/DX9bP8prBf8I/kX4Rfqp/e84O+F/yX8V/6b/kP876AH4Ac4D+Pfyb8b/6Hzg1AD+H/yT+nf0v9Y/9374X5z+Ln8z9k3yL/Tfxu+gH+E/wr+Z/03+1/2T+qf6v6AOoY/TxNO/IM2jHsG90n1LuISkRCy02iuFkIGEYv5BlafKoPqpghtLZtMl3Edd6yv77XaApHVz3Yc8namILvk7UH6+Kdk1/YkxptDgAD+/97c8dv78vi74CUTh6RqjoVS43gj76NkBEhM1YYNelKlzfF/S9lpOgn0/S/8FF/X9wTGTkhnf8Kg2JAILS+43jgOHce7axLCKg4ZvdYQiychyJLZFnP9qvQ90jOYjx3NZCJCPluMjp4E4yLlCc0KP1up0sqYwSGNq0xLLTqER23fx5DZ6m78vakUoPllspZkKcy+5jOgjXqHgMQxceNQv1rLrOETDuiBg1QlV+iPH5uMPDDGsqk5W3aZNXD3/a7HCfrYNvFttR2JfxEHrpRapo6ljOy8xlmZjjL0NjW33Sr3COwBXrTr1jmCfC5J4xEXhTppOoJ19bn3LZi4PNzTpyErGqB8HO2Rry3woMzGEmWyS5RihKspCXRdafLy7au2hCiKwWOFNe8zHUz9hMXZXoDNcJ1I8sUQ///f/JMa/iHEGrswlTdriPZD27IzBnE15fxxegb1Ra6XTOWGTBmAslkomZuR/9mwG0e0mcoCvGLMfiSbUEbHStdNDcFWKkGaOJZE3VP9CP//tzAobEVxue1bQvhMrdpOwCkV9ewOwV1PnDrAWjs/+1NUBlG3NOzQ/XVEfIqRqFopwrdK8jDpdIpuv1xLXhP/9sHRNvPJCe5OOG2hQINQpjpO/MVKrXMK1m5mT9UL5vzqJS46eUqUuX/8o/CajzgrKKkGkIRWAVE+1qSxSttq4UXbnV//IJhdAwAQDKOyAXXZ3IyHh2rJz0lapIDX4/Ta7xeNLQrxmUt3LpO859b7N8vxVENc9Qd7ztYDGQwgjb1pNOmqqIrPyHCz95JhSAQy2bLUsmHuKa0Jr61tc2BJrEjAnLR4HIUQ27Uh9VzXF0PsV4sgOpuwty/Ef2WxlKFjVnUDvxOFkm/spL4IJxBIe2ZoLxjEF4C/Ijb249JNZYPFUpTpxvF6dIWYzv9H6+xOBgDwXKzyBFflf/4dfyIsMNAo1x4S89FvEKCyKPlnNMj1cp7f6gKyyE2F8z+QNd8wPCue/YursId9qCJkt71hArM8UDE8dx3rd0ZqDs7Cssg//UR5rNi6U12rWciDckilJwCqIaflS1gv/4w3nYvZCVmoSSI1WY0Ne6M05VSW/yeXlhA91QzWVu0LOmozBrQEKvaeWmeWQYA5nCLt6JsZWdao5S2B8cWiRUDyuFLu/hjmOIvXgizJyFrPSo3/8xTmC+3i2kgSK8UcQB5vM4cDBMxbuut4a4okVNPXL0OyPUvBl3F+ZXsHty2KMlcuimBPsfB9udNKNkHNjTTzUxrP/6HHWv/iGBzVDRra+22froXQ8ytCwJZ9unJVgDc+f4fmiT017SJ8Kyb5Y98arLnUFGxWDhn5h5959RE7ydtsXVOEObxfLwtjAaDAtD/DHM7yhH23TjDX5czQTyUxb6fegGvc4Od/IBvEvq7TAV0JgyRa/g527V42O6nHu6yo+rSwBrzSZSQiFruGwgAAAAAAUFNBSU4AAAA4QklNA+0AAAAAABAASAAAAAEAAgBIAAAAAQACOEJJTQQoAAAAAAAMAAAAAj/wAAAAAAAAOEJJTQRDAAAAAAAOUGJlVwEQAAYAZAAAAAA="
+    let logo = new Image()
+    logo.src = logoSrc
+    let blankImage = new Image()
+    blankImage.src = "data:image/webp;base64,UklGRpYAAABXRUJQVlA4WAoAAAAAAAAAMQAAMQAAVlA4ICIAAAAQAgCdASoyADIAAAAAJaQAA8lomNNomMsAAP7/3tzwAAAAUFNBSU4AAAA4QklNA+0AAAAAABAASAAAAAEAAgBIAAAAAQACOEJJTQQoAAAAAAAMAAAAAj/wAAAAAAAAOEJJTQRDAAAAAAAOUGJlVwEQAAYAZAAAAAA="
+    const margin = 5
+    const cellSize = 3
+    image.onload = function() {
+      // document.body.appendChild(image)
+      canvas.width = 1000;  // Desired width
+      canvas.height = 1000; // Desired height
+      let c1 = document.createElement("canvas")
+      c1.height = image.height
+      c1.width = image.width
+      let ctx1 = c1.getContext("2d")
+      ctx1.drawImage(image, 0, 0)
+      logoHeight = cellSize * 13.5
+      ctx1.drawImage(blankImage, (c1.width - logoHeight)/2, (c1.height - logoHeight)/2, logoHeight, logoHeight)
+
+      // Draw and stretch the image to fill the canvas
+      context.drawImage(c1, 0, 0, canvas.width, canvas.height);
+      context.drawImage(blurCanvas(canvas, 7), 0, 0)
+      applyUnsharpMask(context, c1, canvas);
+      let t = ((cellSize*7 + 2)/image.width)*1000
+      tMargin = ((margin - 1.5)/image.width)*1000
+      context.drawImage(image1, tMargin, tMargin, t, t)
+      context.drawImage(image1, 1000 - tMargin - t, tMargin, t, t)
+      context.drawImage(image1, tMargin, 1000 - tMargin - t, t, t)
+      tLogoHeight = ((logoHeight - 6)/image.width)*1000
+      context.drawImage(logo, (canvas.width - tLogoHeight)/2, (canvas.height - tLogoHeight)/2, tLogoHeight, tLogoHeight)
+      
+    };
+    qrcode.stringToBytes = qrcode.stringToBytesFuncs["UTF-8"];
+  
+  var qr = qrcode(0, 'H');
+  qr.addData("https://ours.pinenlime.com/984mef", "Byte");
+  qr.make();
+
+  // console.log(qr.createImgTag())
+    image.src = qr.createImgTag(cellSize, margin); // Replace with your image path
+  };
+
+  function applyUnsharpMask(context, image, canvas) {
+    // Draw the original image
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    var originalImageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    // Apply blur filter
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.filter = 'blur(30px)'; // Adjust the radius as needed
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    var blurredImageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    // Unsharp mask: original + (original - blurred) * amount
+    var amount = 100; // Adjust the amount for intensity
+    for (var i = 0; i < originalImageData.data.length; i++) {
+      originalImageData.data[i] += (originalImageData.data[i] - blurredImageData.data[i]) * amount;
+    }
+
+    // Clear the filter and redraw the final image
+    context.filter = 'none';
+    context.putImageData(originalImageData, 0, 0);
+  }
+
+  function blurCanvas(canvas, blurAmount){
+    let resCanvas = document.createElement("canvas")
+    let ctx = canvas.getContext("2d")
+    ctx.filter = `blur(${blurAmount}px)`; // Adjust the radius as needed
+    ctx.drawImage(canvas, 0, 0)
+    return resCanvas
+  }
+
+
+</script>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+</body>
+</html>
